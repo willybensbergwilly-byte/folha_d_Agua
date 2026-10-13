@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block titulo %}Editar Produto - Folha D'Água{% endblock %}
+{% block cabecalho %}Editar Produto{% endblock %}
+{% block descricao %}Atualize as informações e a imagem do produto.{% endblock %}
+
+{% block conteudo %}
+<section class="formulario-container">
+    <form method="POST" enctype="multipart/form-data" class="formulario-produto">
+        <div class="campo">
+            <label for="tipo_produto">Tipo do produto</label>
+            <select id="tipo_produto" name="tipo_produto" required>
+                <option value="Buquê" {% if produto[1] == "Buquê" %}selected{% endif %}>Buquê</option>
+                <option value="Arranjo" {% if produto[1] == "Arranjo" %}selected{% endif %}>Arranjo</option>
+                <option value="Flor individual" {% if produto[1] == "Flor individual" %}selected{% endif %}>Flor individual</option>
+            </select>
+        </div>
+        <div class="campo">
+            <label for="nome_flor">Nome do produto</label>
+            <input type="text" id="nome_flor" name="nome_flor" maxlength="150" value="{{ produto[2] }}" required>
+        </div>
+        <div class="linha">
+            <div class="campo">
+                <label for="preco">Preço (R$)</label>
+                <input type="number" id="preco" name="preco" value="{{ produto[3] }}" step="0.01" min="0.01" required>
+            </div>
+            <div class="campo">
+                <label for="estoque">Quantidade no estoque</label>
+                <input type="number" id="estoque" name="estoque" value="{{ produto[4] }}" min="0" step="1" required>
+            </div>
+        </div>
+        <div class="campo">
+            <label for="imagem">Imagem do produto</label>
+            {% if produto[5] %}
+                <img class="imagem-produto-editar" src="{{ url_for('static', filename='img/produtos/' ~ produto[5]) }}" alt="Foto de {{ produto[2] }}">
+            {% else %}
+                <p class="ajuda-imagem">Ainda não há imagem cadastrada neste produto.</p>
+            {% endif %}
+            <input type="file" id="imagem" name="imagem" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
+            <small>Se não selecionar outra foto, a imagem atual será mantida.</small>
+        </div>
+        <div class="botoes">
+            <a href="{{ url_for('estoque_admin') }}" class="botao cancelar">Cancelar</a>
+            <button type="submit" class="botao cadastrar">Salvar alterações</button>
+        </div>
+    </form>
+</section>
+{% endblock %}

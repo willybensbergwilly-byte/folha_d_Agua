@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folha D'Água | Floricultura</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- APRESENTAÇÃO -->
+    <header class="hero">
+
+        <div class="flores flores-esquerda" aria-hidden="true">
+            ✿
+        </div>
+
+        <div class="flores flores-direita" aria-hidden="true">
+            ✿
+        </div>
+
+        <div class="hero-conteudo">
+            <p class="subtitulo">floricultura</p>
+
+            <h1>Folha D'Água</h1>
+
+            <p class="frase">cultivamos carinho e fazemos sorrisos aflorarem</p>
+
+            <a href="#catalogo" class="botao-catalogo">
+                Catálogo de flores
+            </a>
+        </div>
+
+    </header>
+
+    <!-- CATÁLOGO -->
+    <main id="catalogo">
+
+        <section class="secao-catalogo">
+
+            <h2>Nosso Catálogo</h2>
+            <p class="descricao">
+                Escolha flores para tornar cada momento especial.
+            </p>
+
+            <!-- NAVEGAÇÃO -->
+            <nav class="categorias">
+                <a href="{{ url_for('inicio') }}#catalogo"
+                   class="{% if categoria|default('Todos') == 'Todos' %}ativo{% endif %}">
+                    Todos
+                </a>
+
+                <a href="{{ url_for('inicio', categoria='Buquê') }}#catalogo"
+                   class="{% if categoria == 'Buquê' %}ativo{% endif %}">
+                    Buquês
+                </a>
+
+                <a href="{{ url_for('inicio', categoria='Arranjo') }}#catalogo"
+                   class="{% if categoria == 'Arranjo' %}ativo{% endif %}">
+                    Arranjos
+                </a>
+
+                <a href="{{ url_for('inicio', categoria='Flor individual') }}#catalogo"
+                   class="{% if categoria == 'Flor individual' %}ativo{% endif %}">
+                    Flores individuais
+                </a>
+            </nav>
+
+            <!-- PRODUTOS -->
+            <div class="catalogo-grid">
+
+                {% for produto in produtos %}
+
+                <article class="card-produto">
+
+                    {% if produto[5] %}
+                        <img
+                            class="imagem-produto"
+                            src="{{ url_for('static', filename='img/produtos/' ~ produto[5]) }}"
+                            alt="{{ produto[2] }}"
+                        >
+                    {% else %}
+                        <div class="sem-imagem">
+                            ✿
+                        </div>
+                    {% endif %}
+
+                    <div class="produto-info">
+
+                        <span class="tipo-produto">
+                            {{ produto[1] }}
+                        </span>
+
+                        <h3>{{ produto[2] }}</h3>
+
+                        <p class="preco">
+                            R$ {{ produto[3] }}
+                        </p>
+
+                        {% if produto[4] > 0 %}
+
+                            <span class="disponivel">Disponível</span>
+
+                            {% set mensagem = "Olá! Gostaria de encomendar " ~
+                                produto[2] ~ " no valor de R$ " ~
+                                produto[3] ~ ". Está disponível?" %}
+
+                            <a
+                                class="btn-whatsapp"
+                                href="https://wa.me/5541992397076?text={{ mensagem | urlencode }}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Pedir pelo WhatsApp
+                            </a>
+
+                        {% else %}
+
+                            <span class="indisponivel">
+                                Indisponível
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </article>
+
+                {% else %}
+                    <p class="mensagem-vazia">
+                        Nenhum produto encontrado nesta categoria.
+                    </p>
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <h3>Folha D'Água</h3>
+        <p>cultivamos carinho e fazemos sorrisos aflorarem</p>
+        <a href="{{ url_for('auth.login') }}" class="botao-admin">
+        <span></span> Área Administrativa
+    </a>
+    </footer>
+
+</body>
+</html>

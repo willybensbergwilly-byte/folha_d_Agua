@@ -1,0 +1,343 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Nunito:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --verde-escuro: #1F3D2E;
+    --verde-morto: #7A8F7A;
+    --fundo: #F5EFE6;
+    --rosa-pastel: #D8A7A1;
+    --branco: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Nunito', Arial, sans-serif;
+    background: var(--fundo);
+    color: var(--verde-escuro);
+}
+
+/* LANDING PAGE */
+
+.hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 680px;
+    padding: 80px 20px;
+    text-align: center;
+    overflow: hidden;
+
+    background-color: #A9B8A1;
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.16) 50%,
+            transparent 50%
+        ),
+        linear-gradient(
+            rgba(255,255,255,0.16) 50%,
+            transparent 50%
+        );
+
+    background-size: 80px 80px;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(31, 61, 46, 0.08);
+    pointer-events: none;
+}
+
+.hero-conteudo {
+    position: relative;
+    z-index: 2;
+    color: var(--branco);
+    text-shadow: 0 2px 10px rgba(31, 61, 46, 0.25);
+}
+
+.subtitulo {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.hero h1 {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(95px, 13vw, 185px);
+    font-weight: 400;
+    line-height: 0.9;
+    margin-bottom: 55px;
+}
+
+.frase {
+    font-size: 23px;
+    font-weight: 800;
+    margin-bottom: 50px;
+}
+
+.botao-catalogo {
+    display: inline-block;
+    padding: 17px 35px;
+    background: var(--verde-escuro);
+    color: var(--branco);
+    border-radius: 40px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 800;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.botao-catalogo:hover {
+    background: #345F45;
+    transform: translateY(-3px);
+}
+
+/* FLORES DECORATIVAS */
+
+.flores {
+    position: absolute;
+    z-index: 1;
+    font-size: 250px;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.60);
+    pointer-events: none;
+    text-shadow: 0 4px 15px rgba(31,61,46,0.08);
+}
+
+.flores-esquerda {
+    left: -35px;
+    bottom: 5%;
+    transform: rotate(-20deg);
+}
+
+.flores-direita {
+    right: -35px;
+    top: 6%;
+    transform: rotate(20deg);
+}
+
+/* SEÇÃO CATÁLOGO */
+
+.secao-catalogo {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 75px 25px;
+}
+
+.secao-catalogo h2 {
+    font-family: Georgia, serif;
+    font-size: 38px;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.descricao {
+    text-align: center;
+    color: var(--verde-morto);
+    font-size: 16px;
+    margin-bottom: 35px;
+}
+
+/* NAVEGAÇÃO */
+
+.categorias {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 45px;
+}
+
+.categorias a {
+    padding: 12px 22px;
+    border: 1px solid var(--verde-morto);
+    border-radius: 30px;
+    color: var(--verde-escuro);
+    background: transparent;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 800;
+    transition: 0.2s;
+}
+
+.categorias a:hover,
+.categorias a.ativo {
+    background: var(--verde-escuro);
+    color: var(--branco);
+    border-color: var(--verde-escuro);
+}
+
+/* CARDS DOS PRODUTOS */
+
+.catalogo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.card-produto {
+    background: var(--branco);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(31, 61, 46, 0.08);
+    transition: transform 0.2s;
+}
+
+.card-produto:hover {
+    transform: translateY(-5px);
+}
+
+.imagem-produto,
+.sem-imagem {
+    width: 100%;
+    height: 240px;
+}
+
+.imagem-produto {
+    display: block;
+    object-fit: cover;
+}
+
+.sem-imagem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #E3E9DE;
+    color: var(--verde-morto);
+    font-size: 100px;
+}
+
+.produto-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 22px;
+    min-height: 235px;
+}
+
+.tipo-produto {
+    color: var(--verde-morto);
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.produto-info h3 {
+    font-family: Georgia, serif;
+    font-size: 21px;
+    color: var(--verde-escuro);
+}
+
+.preco {
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.disponivel {
+    color: #477A54;
+    font-size: 14px;
+}
+
+.indisponivel {
+    color: #AD6565;
+    font-size: 14px;
+}
+
+.btn-whatsapp {
+    display: block;
+    margin-top: auto;
+    padding: 13px;
+    background: var(--verde-escuro);
+    color: var(--branco);
+    text-align: center;
+    text-decoration: none;
+    border-radius: 9px;
+    font-weight: 800;
+    transition: background 0.2s;
+}
+
+.btn-whatsapp:hover {
+    background: var(--verde-morto);
+}
+
+.mensagem-vazia {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+}
+
+/* RODAPÉ */
+
+footer {
+    padding: 35px 20px;
+    background: var(--verde-escuro);
+    color: var(--branco);
+    text-align: center;
+}
+
+footer h3 {
+    font-family: 'Caveat', cursive;
+    font-size: 38px;
+    font-weight: 500;
+}
+
+footer p {
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 650px) {
+    .hero {
+        min-height: 550px;
+        padding: 70px 20px;
+    }
+
+    .hero h1 {
+        font-size: clamp(70px, 17vw, 110px);
+        margin-bottom: 40px;
+    }
+
+    .subtitulo {
+        font-size: 22px;
+    }
+
+    .frase {
+        font-size: 18px;
+        margin-bottom: 35px;
+    }
+
+    .flores {
+        font-size: 140px;
+        opacity: 0.55;
+    }
+
+    .secao-catalogo {
+        padding: 50px 18px;
+    }
+
+    .secao-catalogo h2 {
+        font-size: 30px;
+    }
+
+    .categorias a {
+        padding: 10px 15px;
+        font-size: 12px;
+    }
+}

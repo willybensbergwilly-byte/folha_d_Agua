@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Administrativo | Folha D'Água</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #F5EFE6;
+            font-family: Arial, sans-serif;
+            color: #1F3D2E;
+        }
+
+        .login-container {
+            width: 90%;
+            max-width: 400px;
+            padding: 40px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 5px 25px #1F3D2E20;
+        }
+
+        h1, p {
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+        }
+
+        p {
+            color: #7A8F7A;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #7A8F7A;
+            border-radius: 8px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 25px;
+            border: none;
+            border-radius: 8px;
+            background: #1F3D2E;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #7A8F7A;
+        }
+
+        .erro {
+            color: #A83C3C;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .voltar {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #1F3D2E;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="login-container">
+        <h1> Folha D'Água</h1>
+        <p>Área Administrativa</p>
+
+        <form method="POST" action="{{ url_for('auth.login') }}">
+
+            <label for="usuario">Usuário</label>
+            <input type="text" id="usuario" name="usuario"
+                   autocomplete="username" required>
+
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha"
+                   autocomplete="current-password" required>
+
+            {% if erro %}
+                <div class="erro">{{ erro }}</div>
+            {% endif %}
+
+            <button type="submit">Entrar</button>
+        </form>
+
+        <a href="{{ url_for('inicio') }}" class="voltar">
+            ← Voltar para o Catalogo
+        </a>
+    </main>
+
+</body>
+</html>

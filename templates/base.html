@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}Administração - Folha D'Água{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    {% block estilos %}{% endblock %}
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="logo-flor">🌷</span>
+                <h2>Folha D'Água</h2>
+                <span>Administrador</span>
+            </div>
+            <nav>
+                <a href="{{ url_for('inicio') }}">Início / Catálogo</a>
+                <a href="{{ url_for('estoque_admin') }}" class="{% if pagina_ativa == 'estoque' %}ativo{% endif %}">Produtos / Estoque</a>
+                <a href="{{ url_for('cadastrar_produto_admin') }}" class="{% if pagina_ativa == 'cadastro' %}ativo{% endif %}">＋ Cadastrar produto</a>
+            </nav>
+        </aside>
+        <main class="conteudo">
+            <header class="topo">
+                <h1>{% block cabecalho %}Painel administrativo{% endblock %}</h1>
+                <p>{% block descricao %}Gerencie sua floricultura.{% endblock %}</p>
+            </header>
+            {% block conteudo %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

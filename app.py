@@ -158,3 +158,5 @@ def deletar_produto_admin(id):
 
 if __name__ == "__main__":
     app.run(debug=True)  # Somente desenvolvimento local; desative em produção.
+    app.run(host="0.0.0.0", port=5000, debug=True)
+
